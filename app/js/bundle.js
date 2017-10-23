@@ -100,6 +100,8 @@ content.append(homeContainer.getContent())
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_title__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_card__ = __webpack_require__(3);
+
 
 
 class Home {
@@ -114,6 +116,7 @@ class Home {
     container.style.backgroundRepeat = 'no-repeat'
     container.style.backgroundSize = 'cover'
     container.style.backgroundPosition = '50% 50%'
+    container.style.cursor = 'url("/images/DestinyCursor.png")'
 
     let title = new __WEBPACK_IMPORTED_MODULE_0__components_title__["a" /* default */]({
       title: 'Base Project'
@@ -121,6 +124,12 @@ class Home {
 
     container.append(title.getContent())
     
+    let card = new __WEBPACK_IMPORTED_MODULE_1__components_card__["a" /* default */]({
+      id: 'Card'
+    })
+
+    container.append(card.getContent())
+
     return(container)
     
   }
@@ -157,6 +166,46 @@ class Title {
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Title;
 
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Card {
+  constructor (options) {
+    this.options = options
+  } 
+
+  getContent() {
+    let container = document.createElement('div')
+
+    let card = document.createElement('div')
+    card.id = this.options.id
+    card.src = '../images/amazon-echo.png' 
+    card.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
+    card.style.transition = '0.3s'
+    card.style.width = '100px'
+    card.style.height = '100px'
+    card.style.border = '1px solid #000'
+    card.style.position = 'absolute'
+    card.style.top = '100px'
+    card.style.marginTop = this.options.marginTop
+    card.onmouseover = () => {
+      card.style.boxShadow = '0 8px 16px 0 rgba(0,0,0,0.2)'
+    }
+    card.onmouseout = () => {
+      card.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
+    }
+
+    container.append(card)
+    
+    return(container)
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Card;
 
 
 

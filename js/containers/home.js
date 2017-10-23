@@ -1,4 +1,5 @@
 import Title from '../components/title'
+import Card from '../components/card'
 
 export default class Home {
 
@@ -12,6 +13,7 @@ export default class Home {
     container.style.backgroundRepeat = 'no-repeat'
     container.style.backgroundSize = 'cover'
     container.style.backgroundPosition = '50% 50%'
+    container.style.cursor = 'url("/images/DestinyCursor.png")'
 
     let title = new Title({
       title: 'Base Project'
@@ -19,6 +21,12 @@ export default class Home {
 
     container.append(title.getContent())
     
+    let card = new Card({
+      id: 'Card'
+    })
+
+    container.append(card.getContent())
+
     return(container)
     
   }
