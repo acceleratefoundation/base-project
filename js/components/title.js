@@ -5,6 +5,7 @@ export default class Title {
 
   getContent() {
     let container = document.createElement('div')
+    container.classList.add(this.options.columnClass)
 
     let title = document.createElement('div')
     title.append(this.options.title)
