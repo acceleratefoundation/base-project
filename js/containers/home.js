@@ -3,6 +3,7 @@ import NavBar from '../components/nav-bar'
 import Search from '../components/search'
 import Button from '../components/button'
 import Table from '../components/table'
+import Pager from '../components/pager'
 
 export default class Home {
 
@@ -93,9 +94,22 @@ export default class Home {
     })
 
     container.append(table.getContent())
+      
+    let pagerContainer = document.createElement('div')
+    pagerContainer.id = 'pager-container'
+    pagerContainer.style.color = '@theme.colors.primary.background@'
+    pagerContainer.style.textAlign = 'right'
+    pagerContainer.style.fontWeight = 'bold'
+    pagerContainer.style.fontSize = '15px'
 
+    let pager = new Pager({
+      id: 'pager',
+      columnClass: 'col-2'
+    })
 
-
+    pagerContainer.append(pager.getContent())
+    
+    container.append(pagerContainer)
 
       
     return(container)

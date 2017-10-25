@@ -104,6 +104,8 @@ content.append(homeContainer.getContent())
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_button__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_table__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pager__ = __webpack_require__(8);
+
 
 
 
@@ -199,9 +201,22 @@ class Home {
     })
 
     container.append(table.getContent())
+      
+    let pagerContainer = document.createElement('div')
+    pagerContainer.id = 'pager-container'
+    pagerContainer.style.color = '@theme.colors.primary.background@'
+    pagerContainer.style.textAlign = 'right'
+    pagerContainer.style.fontWeight = 'bold'
+    pagerContainer.style.fontSize = '15px'
 
+    let pager = new __WEBPACK_IMPORTED_MODULE_5__components_pager__["a" /* default */]({
+      id: 'pager',
+      columnClass: 'col-2'
+    })
 
-
+    pagerContainer.append(pager.getContent())
+    
+    container.append(pagerContainer)
 
       
     return(container)
@@ -383,11 +398,11 @@ class Search {
     search.style.display = 'none'
     search.style.width = '50px'
     search.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
-    search.style.borderBottom = '2px #333'
+    search.style.border = 'none'
     search.style.fontSize = '14px'
     search.style.backgroundColor = 'rgba(0,0,0,0.2)'
     search.style.backgroundPosition = '10px 10px'
-    search.style.padding = '12px 20px 12px 40px'
+    search.style.padding = '10px 10px 10px 10px'
     search.style.WebkitTransition = 'width 0.1s ease-in-out'
     search.style.transition = 'width 0.1s ease-in-out'
     search.onblur = () => {
@@ -399,11 +414,14 @@ class Search {
     searchIcon.classList.add('fa')
     searchIcon.classList.add('fa-search')
     searchIcon.classList.add('fa-2x')
-    searchIcon.style.padding = '3px 3px'
+    searchIcon.style.cursor = 'pointer'
+    searchIcon.style.padding = '10px 10px'
+    searchIcon.style.float = 'left'
      
     searchIcon.onclick = () => {
       search.style.width = '100%'
       search.style.display = 'block'
+      search.style.float = 'right'
     }
     container.append(searchIcon)
 
@@ -524,6 +542,82 @@ class Button {
   
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Button;
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Pager {
+  constructor (options) {
+    this.options = options
+  } 
+
+  getContent() {
+    let container = document.createElement('div')
+    container.style.display = 'flex'
+    container.classList.add(this.options.columnClass)
+
+    let leftArrowIcon = document.createElement('img')
+    leftArrowIcon.src = '/images/left-arrow.png'
+    leftArrowIcon.style.color = '#D8D8D8'
+    leftArrowIcon.style.marginTop = '0'
+    leftArrowIcon.style.marginBottom = '0'
+    leftArrowIcon.style.marginRight = '10px'
+    leftArrowIcon.style.marginLeft = '0'
+    leftArrowIcon.style.padding = '0'
+    leftArrowIcon.onclick = this.options.onPrevious
+
+    leftArrowIcon.onmouseover = () => {
+      leftArrowIcon.style.color = '#77A3B9'
+      leftArrowIcon.style.cursor = 'pointer'
+    }
+
+    leftArrowIcon.onmouseout = () => {
+      leftArrowIcon.style.color = '#D8D8D8'
+      leftArrowIcon.style.cursor = 'default'
+    }
+
+    container.append(leftArrowIcon)
+
+    let pageInfo = document.createElement('div')
+    pageInfo.id = this.options.id
+    pageInfo.style.color = '#303030'
+
+    pageInfo.append(this.options.info)
+
+    this.pageInfo = pageInfo
+
+    container.append(pageInfo)
+
+    let rightArrowIcon = document.createElement('img')
+    rightArrowIcon.src = '/images/right-arrow.png'
+    rightArrowIcon.style.color = '#D8D8D8'
+    rightArrowIcon.style.marginTop = '0'
+    rightArrowIcon.style.marginBottom = '0'
+    rightArrowIcon.style.marginRight = '0'
+    rightArrowIcon.style.marginLeft = '10px'
+    rightArrowIcon.style.padding = '0'
+    rightArrowIcon.onclick = this.options.onNext
+
+    rightArrowIcon.onmouseover = () => {
+      rightArrowIcon.style.color = '#77A3B9'
+      rightArrowIcon.style.cursor = 'pointer'
+    }
+
+    rightArrowIcon.onmouseout = () => {
+      rightArrowIcon.style.color = '#D8D8D8'
+      rightArrowIcon.style.cursor = 'default'
+    }
+
+    container.append(rightArrowIcon)
+
+    return container
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Pager;
 
 
 
