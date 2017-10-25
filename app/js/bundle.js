@@ -99,10 +99,10 @@ content.append(homeContainer.getContent())
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_title__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_card__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_nav_bar__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_search__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_card__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_button__ = __webpack_require__(5);
 
 
 
@@ -121,19 +121,14 @@ class Home {
     container.style.backgroundSize = 'cover'
     container.style.backgroundPosition = '50% 50%'
 
-    let title = new __WEBPACK_IMPORTED_MODULE_0__components_title__["a" /* default */]({
-      title: 'Base Project',
-      columnClass: 'col-2'
-    })
-
-    container.append(title.getContent())
     
-    /*let navBar = new NavBar({
+    let navBar = new __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__["a" /* default */]({
       id: 'NavBar',
-      columnClass: 'col-6'
-    })*/
+      columnClass: 'col-12'
+    })
+    container.append(navBar.getContent())
  
-    let honeywellCard = new __WEBPACK_IMPORTED_MODULE_1__components_card__["a" /* default */]({
+    let honeywellCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
       id: 'HoneywellCard',
       title: 'Honeywell',
       value: 'Honeywell',
@@ -142,7 +137,7 @@ class Home {
     
     container.append(honeywellCard.getContent())
 
-    let ecobeeCard = new __WEBPACK_IMPORTED_MODULE_1__components_card__["a" /* default */]({
+    let ecobeeCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
       id: 'EcobeeCard',
       title: 'Ecobee',
       value: 'Ecobee',
@@ -151,7 +146,7 @@ class Home {
 
     container.append(ecobeeCard.getContent())
     
-    let nestCard = new __WEBPACK_IMPORTED_MODULE_1__components_card__["a" /* default */]({
+    let nestCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
       id: 'NestCard',
       title: 'Nest',
       value: 'Nest',
@@ -160,7 +155,7 @@ class Home {
 
     container.append(nestCard.getContent())
 
-    let alexaCard = new __WEBPACK_IMPORTED_MODULE_1__components_card__["a" /* default */]({
+    let alexaCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
       id: 'AlexaCard',
       title: 'Alexa',
       value: 'Alexa',
@@ -169,15 +164,23 @@ class Home {
 
     container.append(alexaCard.getContent())
 
-    //container.append(navBar.getContent())
 
-    let search = new __WEBPACK_IMPORTED_MODULE_3__components_search__["a" /* default */]({
+    let search = new __WEBPACK_IMPORTED_MODULE_2__components_search__["a" /* default */]({
       id: 'Search',
       placeholder: 'Search',
       columnClass: 'col-2'
     })
 
     container.append(search.getContent())
+
+    let button = new __WEBPACK_IMPORTED_MODULE_3__components_button__["a" /* default */]({
+      id: 'Button',
+      title: 'Take Control',
+      value: 'Take Control',
+      columnClass: 'col-1'
+    })
+
+    container.append(button.getContent())
       
     return(container)
     
@@ -189,38 +192,6 @@ class Home {
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Title {
-  constructor (options) {
-    this.options = options
-  } 
-
-  getContent() {
-    let container = document.createElement('div')
-    container.classList.add(this.options.columnClass)
-
-    let title = document.createElement('div')
-    title.append(this.options.title)
-    title.style.position = 'absolute'
-    title.style.color = '#ffffff'
-    title.style.fontSize = '20px'
-    title.style.top = '100px'
-    title.style.marginLeft = '100px'
-
-    container.append(title)
-
-    return(container)
-  }
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Title;
-
-
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -263,7 +234,7 @@ class Card {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -278,23 +249,11 @@ class NavBar {
 
     let navBar = document.createElement('ul')
     navBar.id = this.options.id
-    navBar.style.width = '1500px'
     navBar.style.listStyleType = 'none'
     navBar.style.margin = '0'
     navBar.style.padding = '0'
     navBar.style.overflow = 'hidden'
     navBar.style.backgroundColor = '#333'
-
-    let devices = document.createElement('li')
-    devices.id = 'devices'
-    devices.value = 'devices'
-    devices.append(document.createTextNode('Devices'))
-    devices.style.float = 'left'
-    devices.style.display = 'block'
-    devices.style.color = 'white'
-    devices.style.textAlign = 'center'
-    devices.style.padding = '14px 16px'
-    navBar.append(devices)
 
     let home = document.createElement('li')
     home.id = 'home'
@@ -305,8 +264,16 @@ class NavBar {
     home.style.color = 'white'
     home.style.textAlign = 'center'
     home.style.padding = '14px 16px'
+    home.style.fontWeight = 'bold'
+    home.style.cursor = 'pointer'
+    home.onmouseover = () =>{
+      home.style.textDecoration = 'underline'
+    }
+    home.onmouseout = () =>{
+      home.style.textDecoration = 'none'
+    }
     navBar.append(home)
-
+    
     let profile = document.createElement('li')
     profile.id = 'profile'
     profile.value = 'profile'
@@ -315,20 +282,64 @@ class NavBar {
     profile.style.display = 'block'
     profile.style.color = 'white'
     profile.style.textAlign = 'center'
+    profile.style.cursor = 'pointer'
     profile.style.padding = '14px 16px'
+    profile.onmouseover = () =>{
+      profile.style.textDecoration = 'underline'
+    }
+    profile.onmouseout = () =>{
+     profile.style.textDecoration = 'none'
+    }
     navBar.append(profile)
 
+    let devices = document.createElement('li')
+    devices.id = 'devices'
+    devices.value = 'devices'
+    devices.append(document.createTextNode('Devices'))
+    devices.style.float = 'left'
+    devices.style.display = 'block'
+    devices.style.color = 'white'
+    devices.style.textAlign = 'center'
+    devices.style.padding = '14px 16px'
+    devices.style.cursor = 'pointer'
+    devices.onmouseover = () =>{
+      devices.style.textDecoration = 'underline'
+    }
+    devices.onmouseout = () =>{
+     devices.style.textDecoration = 'none'
+    }
+    navBar.append(devices)
+
+    let settings  = document.createElement('li')
+    settings.id = 'settings'
+    settings.value = 'settings'
+    settings.append(document.createTextNode('Settings'))
+    settings.style.float = 'left'
+    settings.style.display = 'block'
+    settings.style.color = 'white'
+    settings.style.textAlign = 'center'
+    settings.style.padding = '14px 16px'
+    settings.style.cursor = 'pointer'
+    settings.onmouseover = () =>{
+      settings.style.textDecoration = 'underline'
+    }
+    settings.onmouseout = () =>{
+     settings.style.textDecoration = 'none'
+    }
+    navBar.append(settings)
+
+    
     container.append(navBar)
 
     return(container)
   }
 }
-/* unused harmony export default */
+/* harmony export (immutable) */ __webpack_exports__["a"] = NavBar;
 
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -371,6 +382,36 @@ class Search {
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Search;
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Button {
+  constructor (options) {
+    this.options = options
+  } 
+
+  getContent() {
+    let container = document.createElement('div')
+    container.id = this.options.id
+    container.classList.add(this.options.columnClass)
+
+    let buttonIcon = document.createElement('i')
+    buttonIcon.classList.add('fa')
+    buttonIcon.classList.add('fa-globe')
+    buttonIcon.classList.add('fa-2x')
+    buttonIcon.style.borderRadius = '25px'
+    container.append(buttonIcon)
+
+    return container
+  } 
+  
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Button;
 
 
 

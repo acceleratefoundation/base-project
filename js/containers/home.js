@@ -1,7 +1,7 @@
-import Title from '../components/title'
 import Card from '../components/card'
 import NavBar from '../components/nav-bar'
 import Search from '../components/search'
+import Button from '../components/button'
 
 export default class Home {
 
@@ -16,17 +16,12 @@ export default class Home {
     container.style.backgroundSize = 'cover'
     container.style.backgroundPosition = '50% 50%'
 
-    let title = new Title({
-      title: 'Base Project',
-      columnClass: 'col-2'
-    })
-
-    container.append(title.getContent())
     
-    /*let navBar = new NavBar({
+    let navBar = new NavBar({
       id: 'NavBar',
-      columnClass: 'col-6'
-    })*/
+      columnClass: 'col-12'
+    })
+    container.append(navBar.getContent())
  
     let honeywellCard = new Card({
       id: 'HoneywellCard',
@@ -64,7 +59,6 @@ export default class Home {
 
     container.append(alexaCard.getContent())
 
-    //container.append(navBar.getContent())
 
     let search = new Search({
       id: 'Search',
@@ -73,6 +67,15 @@ export default class Home {
     })
 
     container.append(search.getContent())
+
+    let button = new Button({
+      id: 'Button',
+      title: 'Take Control',
+      value: 'Take Control',
+      columnClass: 'col-1'
+    })
+
+    container.append(button.getContent())
       
     return(container)
     
