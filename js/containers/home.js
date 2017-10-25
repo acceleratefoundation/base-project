@@ -1,6 +1,7 @@
 import Title from '../components/title'
 import Card from '../components/card'
 import NavBar from '../components/nav-bar'
+import Search from '../components/search'
 
 export default class Home {
 
@@ -22,10 +23,10 @@ export default class Home {
 
     container.append(title.getContent())
     
-    let navBar = new NavBar({
+    /*let navBar = new NavBar({
       id: 'NavBar',
       columnClass: 'col-6'
-    })
+    })*/
  
     let honeywellCard = new Card({
       id: 'HoneywellCard',
@@ -63,7 +64,16 @@ export default class Home {
 
     container.append(alexaCard.getContent())
 
-    container.append(navBar.getContent())
+    //container.append(navBar.getContent())
+
+    let search = new Search({
+      id: 'Search',
+      placeholder: 'Search',
+      columnClass: 'col-2'
+    })
+
+    container.append(search.getContent())
+      
     return(container)
     
   }
