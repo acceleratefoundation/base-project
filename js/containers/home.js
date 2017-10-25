@@ -2,6 +2,7 @@ import Card from '../components/card'
 import NavBar from '../components/nav-bar'
 import Search from '../components/search'
 import Button from '../components/button'
+import Table from '../components/table'
 
 export default class Home {
 
@@ -23,59 +24,79 @@ export default class Home {
     })
     container.append(navBar.getContent())
  
-    let honeywellCard = new Card({
-      id: 'HoneywellCard',
-      title: 'Honeywell',
-      value: 'Honeywell',
-      columnClass: 'col-2'
-    })
-    
-    container.append(honeywellCard.getContent())
-
-    let ecobeeCard = new Card({
-      id: 'EcobeeCard',
-      title: 'Ecobee',
-      value: 'Ecobee',
-      columnClass: 'col-2'
-    })
-
-    container.append(ecobeeCard.getContent())
-    
-    let nestCard = new Card({
-      id: 'NestCard',
-      title: 'Nest',
-      value: 'Nest',
-      columnClass: 'col-2'
-    })
-
-    container.append(nestCard.getContent())
-
-    let alexaCard = new Card({
-      id: 'AlexaCard',
-      title: 'Alexa',
-      value: 'Alexa',
-      columnClass: 'col-2'
-    })
-
-    container.append(alexaCard.getContent())
-
-
     let search = new Search({
       id: 'Search',
       placeholder: 'Search',
-      columnClass: 'col-2'
+      columnClass: 'col-2',
     })
 
     container.append(search.getContent())
-
+    
     let button = new Button({
       id: 'Button',
       title: 'Take Control',
       value: 'Take Control',
-      columnClass: 'col-1'
+      columnClass: 'col-2',
+      icon: 'fa-globe'
+    })
+    
+    container.append(button.getContent())
+
+    let addButtonContainer = document.createElement('div')
+    addButtonContainer.id = 'addButtonContainer'
+    addButtonContainer.style.position = 'absolute'
+    addButtonContainer.style.top = '100px'
+    addButtonContainer.style.zIndex = '5'
+    addButtonContainer.style.right = '4%'
+
+    let addButton = new Button({
+      id: 'Add Button',
+      columnClass: 'col-2',
+      icon: 'fa-plus-circle'
     })
 
-    container.append(button.getContent())
+    addButtonContainer.append(addButton.getContent())
+    container.append(addButtonContainer)
+    
+    let table = new Table({
+      id: 'table',
+      data: [
+        {
+          "name": "Cody",
+          "address": "1234 Test Lane"
+        },
+        {
+          "name": "Cory",
+          "address": "1234 Test Lane 1"
+        },
+        {
+          "name": "Sean",
+          "address": "1234 Test Lane 2"
+        },
+        {
+          "name": "Gerald",
+          "address": "1234 Test Lane 3"
+        },
+      ],
+      design: {
+        name: {
+          title: 'name',
+          description: 'address'
+        },
+        header: {
+          name: 'Name',
+          widget: 'Average Temperature',
+          control: 'Control'
+        }
+      },
+      columnClass: 'col-12'
+    })
+
+    container.append(table.getContent())
+
+
+
+
       
     return(container)
     

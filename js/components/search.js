@@ -12,24 +12,32 @@ export default class Search {
     search.id = this.options.id
     search.placeholder = this.options.placeholder
 
+    search.style.display = 'none'
     search.style.width = '50px'
-    search.style.boxSizing = 'border-box'
     search.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
-    search.style.border = '2px solid #333'
-    search.style.borderRadius = '4px'
-    search.style.color = '#ffffff'
+    search.style.borderBottom = '2px #333'
     search.style.fontSize = '14px'
-    search.style.backgroundColor = 'transparent'
+    search.style.backgroundColor = 'rgba(0,0,0,0.2)'
     search.style.backgroundPosition = '10px 10px'
     search.style.padding = '12px 20px 12px 40px'
     search.style.WebkitTransition = 'width 0.1s ease-in-out'
     search.style.transition = 'width 0.1s ease-in-out'
-    search.onclick = () => {
-      search.style.width = '100%'
-    }
     search.onblur = () => {
       search.style.width = '25%'
+      search.style.display = 'none'
     }
+
+    let searchIcon = document.createElement('i')
+    searchIcon.classList.add('fa')
+    searchIcon.classList.add('fa-search')
+    searchIcon.classList.add('fa-2x')
+    searchIcon.style.padding = '3px 3px'
+     
+    searchIcon.onclick = () => {
+      search.style.width = '100%'
+      search.style.display = 'block'
+    }
+    container.append(searchIcon)
 
     container.append(search)
 

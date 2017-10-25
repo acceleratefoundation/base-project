@@ -99,10 +99,12 @@ content.append(homeContainer.getContent())
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_card__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_button__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_card__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_button__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_table__ = __webpack_require__(6);
+
 
 
 
@@ -128,59 +130,79 @@ class Home {
     })
     container.append(navBar.getContent())
  
-    let honeywellCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
-      id: 'HoneywellCard',
-      title: 'Honeywell',
-      value: 'Honeywell',
-      columnClass: 'col-2'
-    })
-    
-    container.append(honeywellCard.getContent())
-
-    let ecobeeCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
-      id: 'EcobeeCard',
-      title: 'Ecobee',
-      value: 'Ecobee',
-      columnClass: 'col-2'
-    })
-
-    container.append(ecobeeCard.getContent())
-    
-    let nestCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
-      id: 'NestCard',
-      title: 'Nest',
-      value: 'Nest',
-      columnClass: 'col-2'
-    })
-
-    container.append(nestCard.getContent())
-
-    let alexaCard = new __WEBPACK_IMPORTED_MODULE_0__components_card__["a" /* default */]({
-      id: 'AlexaCard',
-      title: 'Alexa',
-      value: 'Alexa',
-      columnClass: 'col-2'
-    })
-
-    container.append(alexaCard.getContent())
-
-
     let search = new __WEBPACK_IMPORTED_MODULE_2__components_search__["a" /* default */]({
       id: 'Search',
       placeholder: 'Search',
-      columnClass: 'col-2'
+      columnClass: 'col-2',
     })
 
     container.append(search.getContent())
-
+    
     let button = new __WEBPACK_IMPORTED_MODULE_3__components_button__["a" /* default */]({
       id: 'Button',
       title: 'Take Control',
       value: 'Take Control',
-      columnClass: 'col-1'
+      columnClass: 'col-2',
+      icon: 'fa-globe'
+    })
+    
+    container.append(button.getContent())
+
+    let addButtonContainer = document.createElement('div')
+    addButtonContainer.id = 'addButtonContainer'
+    addButtonContainer.style.position = 'absolute'
+    addButtonContainer.style.top = '100px'
+    addButtonContainer.style.zIndex = '5'
+    addButtonContainer.style.right = '4%'
+
+    let addButton = new __WEBPACK_IMPORTED_MODULE_3__components_button__["a" /* default */]({
+      id: 'Add Button',
+      columnClass: 'col-2',
+      icon: 'fa-plus-circle'
     })
 
-    container.append(button.getContent())
+    addButtonContainer.append(addButton.getContent())
+    container.append(addButtonContainer)
+    
+    let table = new __WEBPACK_IMPORTED_MODULE_4__components_table__["a" /* default */]({
+      id: 'table',
+      data: [
+        {
+          "name": "Cody",
+          "address": "1234 Test Lane"
+        },
+        {
+          "name": "Cory",
+          "address": "1234 Test Lane 1"
+        },
+        {
+          "name": "Sean",
+          "address": "1234 Test Lane 2"
+        },
+        {
+          "name": "Gerald",
+          "address": "1234 Test Lane 3"
+        },
+      ],
+      design: {
+        name: {
+          title: 'name',
+          description: 'address'
+        },
+        header: {
+          name: 'Name',
+          widget: 'Average Temperature',
+          control: 'Control'
+        }
+      },
+      columnClass: 'col-12'
+    })
+
+    container.append(table.getContent())
+
+
+
+
       
     return(container)
     
@@ -191,7 +213,8 @@ class Home {
 
 
 /***/ }),
-/* 2 */
+/* 2 */,
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -229,12 +252,12 @@ class Card {
     return(container)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Card;
+/* unused harmony export default */
 
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -339,7 +362,7 @@ class NavBar {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -357,24 +380,32 @@ class Search {
     search.id = this.options.id
     search.placeholder = this.options.placeholder
 
+    search.style.display = 'none'
     search.style.width = '50px'
-    search.style.boxSizing = 'border-box'
     search.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
-    search.style.border = '2px solid #333'
-    search.style.borderRadius = '4px'
-    search.style.color = '#ffffff'
+    search.style.borderBottom = '2px #333'
     search.style.fontSize = '14px'
-    search.style.backgroundColor = 'transparent'
+    search.style.backgroundColor = 'rgba(0,0,0,0.2)'
     search.style.backgroundPosition = '10px 10px'
     search.style.padding = '12px 20px 12px 40px'
     search.style.WebkitTransition = 'width 0.1s ease-in-out'
     search.style.transition = 'width 0.1s ease-in-out'
-    search.onclick = () => {
-      search.style.width = '100%'
-    }
     search.onblur = () => {
       search.style.width = '25%'
+      search.style.display = 'none'
     }
+
+    let searchIcon = document.createElement('i')
+    searchIcon.classList.add('fa')
+    searchIcon.classList.add('fa-search')
+    searchIcon.classList.add('fa-2x')
+    searchIcon.style.padding = '3px 3px'
+     
+    searchIcon.onclick = () => {
+      search.style.width = '100%'
+      search.style.display = 'block'
+    }
+    container.append(searchIcon)
 
     container.append(search)
 
@@ -386,7 +417,84 @@ class Search {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Table {
+  constructor (options) {
+    this.options = options
+  }
+
+   getContent() {
+    let container = document.createElement('div')
+    container.classList.add(this.options.columnClass)
+    
+    let table = document.createElement('div')
+    table.id = this.options.id
+    table.classList.add(this.options.columnClass)
+    
+    table.style.backgroundColor = 'transparent'
+    table.style.borderRadius = '5px 5px 5px 5px'
+    let rowBackgroundColor = ''
+    this.options.data.forEach((item,index) => {
+      // create the dom Element
+
+      let tableRow = document.createElement( 'div' )
+      tableRow.style.display = 'flex'
+      tableRow.style.border = '1px solid #fafafa'
+      tableRow.style.fontSize = '24px'
+      tableRow.style.color = '#ffffff'
+      tableRow.style.borderTop = '1px'
+      if((index + 1) % 2 === 0) {
+        tableRow.style.backgroundColor = 'rgba(0, 0, 0, 0.)'
+      }
+      else {
+        tableRow.style.backgroundColor = 'rgba(0, 0, 0, 0.4)'
+      }
+      let tableData = document.createElement('div')
+      tableData.style.flex = '1'
+      tableData.style.padding = '10px 10px'
+      let tableName = document.createElement('div')
+      tableName.innerHTML = `
+        <div>
+          <div style="font-weight: bold;">
+            ${item[this.options.design.name.title]}
+          </div>
+          <div>
+            ${item[this.options.design.name.description]}
+          </div>
+        </div>
+      `
+      tableData.append(tableName)
+      tableRow.append(tableData)
+    
+      table.append(tableRow)
+    
+      let buttonWidget = document.createElement('button')
+      buttonWidget.style.backgroundColor = 'rgba(0,0,0,0.2)'
+      buttonWidget.style.width = '10%'
+      buttonWidget.style.borderRadius = '5px'
+      buttonWidget.style.textAlign = 'center'
+      buttonWidget.style.color = '#ffffff'
+      buttonWidget.style.textTransform = 'uppercase'
+      buttonWidget.append(document.createTextNode('Open'))
+
+      tableRow.append(buttonWidget)
+
+
+    })
+
+     
+    return(table)
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Table;
+
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -400,12 +508,16 @@ class Button {
     container.id = this.options.id
     container.classList.add(this.options.columnClass)
 
+    let button = document.createElement('div')
+    button.style.backgroundColor = 'transparent'
+
     let buttonIcon = document.createElement('i')
     buttonIcon.classList.add('fa')
-    buttonIcon.classList.add('fa-globe')
+    buttonIcon.classList.add(this.options.icon)
     buttonIcon.classList.add('fa-2x')
-    buttonIcon.style.borderRadius = '25px'
-    container.append(buttonIcon)
+    button.append(buttonIcon)
+
+    container.append(button)
 
     return container
   } 
