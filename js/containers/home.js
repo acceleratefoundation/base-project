@@ -4,6 +4,7 @@ import Search from '../components/search'
 import Button from '../components/button'
 import Table from '../components/table'
 import Pager from '../components/pager'
+import LoginForm from '../components/login-form'
 
 export default class Home {
 
@@ -18,8 +19,14 @@ export default class Home {
     container.style.backgroundSize = 'cover'
     container.style.backgroundPosition = '50% 50%'
 
+    let login = new LoginForm({
+      id: 'LoginForm',
+      columnClass: 'col-12',
+    })
+
+    container.append(login.getContent())
     
-    let navBar = new NavBar({
+    /*let navBar = new NavBar({
       id: 'NavBar',
       columnClass: 'col-12'
     })
@@ -110,7 +117,7 @@ export default class Home {
     pagerContainer.append(pager.getContent())
     
     container.append(pagerContainer)
-
+*/
       
     return(container)
     

@@ -99,12 +99,14 @@ content.append(homeContainer.getContent())
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_card__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_button__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_card__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_search__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_button__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_table__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pager__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pager__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_login_form__ = __webpack_require__(8);
+
 
 
 
@@ -125,14 +127,20 @@ class Home {
     container.style.backgroundSize = 'cover'
     container.style.backgroundPosition = '50% 50%'
 
+    let login = new __WEBPACK_IMPORTED_MODULE_6__components_login_form__["a" /* default */]({
+      id: 'LoginForm',
+      columnClass: 'col-12',
+    })
+
+    container.append(login.getContent())
     
-    let navBar = new __WEBPACK_IMPORTED_MODULE_1__components_nav_bar__["a" /* default */]({
+    /*let navBar = new NavBar({
       id: 'NavBar',
       columnClass: 'col-12'
     })
     container.append(navBar.getContent())
  
-    let search = new __WEBPACK_IMPORTED_MODULE_2__components_search__["a" /* default */]({
+    let search = new Search({
       id: 'Search',
       placeholder: 'Search',
       columnClass: 'col-2',
@@ -140,7 +148,7 @@ class Home {
 
     container.append(search.getContent())
     
-    let button = new __WEBPACK_IMPORTED_MODULE_3__components_button__["a" /* default */]({
+    let button = new Button({
       id: 'Button',
       title: 'Take Control',
       value: 'Take Control',
@@ -157,7 +165,7 @@ class Home {
     addButtonContainer.style.zIndex = '5'
     addButtonContainer.style.right = '4%'
 
-    let addButton = new __WEBPACK_IMPORTED_MODULE_3__components_button__["a" /* default */]({
+    let addButton = new Button({
       id: 'Add Button',
       columnClass: 'col-2',
       icon: 'fa-plus-circle'
@@ -166,7 +174,7 @@ class Home {
     addButtonContainer.append(addButton.getContent())
     container.append(addButtonContainer)
     
-    let table = new __WEBPACK_IMPORTED_MODULE_4__components_table__["a" /* default */]({
+    let table = new Table({
       id: 'table',
       data: [
         {
@@ -209,7 +217,7 @@ class Home {
     pagerContainer.style.fontWeight = 'bold'
     pagerContainer.style.fontSize = '15px'
 
-    let pager = new __WEBPACK_IMPORTED_MODULE_5__components_pager__["a" /* default */]({
+    let pager = new Pager({
       id: 'pager',
       columnClass: 'col-2'
     })
@@ -217,7 +225,7 @@ class Home {
     pagerContainer.append(pager.getContent())
     
     container.append(pagerContainer)
-
+*/
       
     return(container)
     
@@ -228,8 +236,7 @@ class Home {
 
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -272,7 +279,7 @@ class Card {
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -372,12 +379,12 @@ class NavBar {
     return(container)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = NavBar;
+/* unused harmony export default */
 
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -430,7 +437,41 @@ class Search {
     return(container)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Search;
+/* unused harmony export default */
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Button {
+  constructor (options) {
+    this.options = options
+  } 
+
+  getContent() {
+    let container = document.createElement('div')
+    container.id = this.options.id
+    container.classList.add(this.options.columnClass)
+
+    let button = document.createElement('div')
+    button.style.backgroundColor = 'transparent'
+
+    let buttonIcon = document.createElement('i')
+    buttonIcon.classList.add('fa')
+    buttonIcon.classList.add(this.options.icon)
+    buttonIcon.classList.add('fa-2x')
+    button.append(buttonIcon)
+
+    container.append(button)
+
+    return container
+  } 
+  
+}
+/* unused harmony export default */
 
 
 
@@ -507,46 +548,12 @@ class Table {
     return(table)
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Table;
+/* unused harmony export default */
 
 
 
 /***/ }),
 /* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Button {
-  constructor (options) {
-    this.options = options
-  } 
-
-  getContent() {
-    let container = document.createElement('div')
-    container.id = this.options.id
-    container.classList.add(this.options.columnClass)
-
-    let button = document.createElement('div')
-    button.style.backgroundColor = 'transparent'
-
-    let buttonIcon = document.createElement('i')
-    buttonIcon.classList.add('fa')
-    buttonIcon.classList.add(this.options.icon)
-    buttonIcon.classList.add('fa-2x')
-    button.append(buttonIcon)
-
-    container.append(button)
-
-    return container
-  } 
-  
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Button;
-
-
-
-/***/ }),
-/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -617,7 +624,122 @@ class Pager {
     return container
   }
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Pager;
+/* unused harmony export default */
+
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class LoginForm {
+  constructor (options) {
+    this.options = options
+  } 
+
+  getContent() {
+    let container = document.createElement('div')
+    container.classList.add(this.options.columnClass)
+
+    let login = document.createElement('div')
+    login.style.position = 'absolute'
+    login.style.border = '3px solid #f1f1f1'
+    login.style.display = 'inline-block'
+    container.append(login)
+    
+    
+    let card = document.createElement('div')
+    card.style.boxShadow = '0 4px 8px 0 rgba(0,0,0,0.2)'
+    card.style.borderRadius= '25px'
+    card.style.transition = '0.3s'
+    card.style.width = '350px'
+    card.style.height = '350px'
+    card.style.border = '1px solid #000'
+    card.style.position = 'absolute'
+    card.style.cursor = 'pointer'
+    card.style.top = '33%'
+    card.style.marginLeft = '39%'
+    container.append(card)
+    
+    let cardBackground = document.createElement('img')
+    cardBackground.src = '/images/login-background.jpg'
+    cardBackground.style.height = '350px'
+    cardBackground.style.borderRadius = '25px'
+    cardBackground.style.width = '350px'
+    cardBackground.style.opacity = '0.4'
+    card.append(cardBackground
+    
+    )
+    let usernameContainer = document.createElement('div')
+    usernameContainer.id = 'usernameContainer'
+    usernameContainer.style.position = 'fixed'
+    usernameContainer.style.top = '45%'
+    usernameContainer.style.marginLeft = '42%'
+    usernameContainer.style.border = '1px solid rgba(255,255,255,0.6)'
+    container.append(usernameContainer)
+    let username = document.createElement('input')
+    username.type = 'text'
+    username.placeholder = 'Username' 
+    username.style.width = '250px'
+    username.style.height = '30px'
+    username.style.background = 'transparent'
+    username.style.border = '1px solid rgba(255,255,255,0.6)'
+    username.style.borderRadius = '2px'
+    username.style.color = '#fff'
+    username.style.fontFamily = 'Exo, sans-serif'
+    username.style.fontSize = '16px'
+    username.style.fontWeight = '400'
+    username.style.padding = '4px'
+    login.append(username)
+    usernameContainer.append(username)
+
+    let passwordContainer = document.createElement('div')
+    passwordContainer.id = 'passwordContainer'
+    passwordContainer.style.position = 'fixed'
+    passwordContainer.style.top = '50%'
+    passwordContainer.style.marginLeft = '42%'
+    container.append(passwordContainer)
+    let password = document.createElement('input')
+    password.type = 'text'
+    password.placeholder = 'Password' 
+    password.style.width = '250px'
+    password.style.height = '30px'
+    password.style.background = 'transparent'
+    password.style.border = '1px solid rgba(255,255,255,0.6)'
+    password.style.borderRadius = '2px'
+    password.style.color = '#fff'
+    password.style.fontFamily = 'Exo, sans-serif'
+    password.style.fontSize = '16px'
+    password.style.fontWeight = '400'
+    password.style.padding = '4px'
+    login.append(password)
+    passwordContainer.append(password)
+
+    let button = document.createElement('div')
+    button.style.backgroundColor = 'transparent'
+    button.style.position = 'fixed'
+    button.style.top = '60%'
+    button.style.marginLeft = '47%'
+    container.append(button)
+    
+    let buttonIcon = document.createElement('img')
+    buttonIcon.src = '/images/submit.png'
+    buttonIcon.style.height = '50%'
+    buttonIcon.style.width = '50%'
+    buttonIcon.onclick = () =>{
+    }
+    button.append(buttonIcon)
+
+
+
+    container.append(login)
+
+    return(container)
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = LoginForm;
+
 
 
 
